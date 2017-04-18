@@ -9,9 +9,12 @@ var ref = function (value) {
 };
 
 function Defer() {
+    //Keep track of callback handler & end value of this promise
     var successHandler = [], errorHandler = [], value;
+    //Keep status of promise -- pending/resolved/rejected
     var status = 'pending';
     return {
+        //publish the result
         resolve: function (result) {
             if (status == 'pending') {
                 value = ref(result);
@@ -26,6 +29,7 @@ function Defer() {
             //similar to resolve    
         },
         promise: {
+            //subscribe for the result of asynchronous task
             then: function (_success, _error) {
                 var defer = Defer();
                 var success = function (value) {
