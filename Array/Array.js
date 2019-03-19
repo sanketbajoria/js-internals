@@ -13,7 +13,9 @@ arr.splice(idx,0,items);
 arr.pop()
 //remove from first
 arr.shift()
+
 //remove from middle
+//modify existing array
 arr.splice(idx,1)
 
 //Functional programming
@@ -22,3 +24,6 @@ arr.splice(idx,1)
 //sublist or cloning
 arr.slice()
 
+//append one arr to another
+//doesn't modify arr, but return new array
+arr.concat(arr2) 

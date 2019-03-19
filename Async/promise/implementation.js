@@ -8,6 +8,37 @@ var ref = function (value) {
     };
 };
 
+function Promise(cb){
+    //cb -- (resolve, reject) => {}
+    //Keep track of callback handler & end value of this promise
+    var successHandler = [], errorHandler = [], value;
+    //Keep status of promise -- pending/resolved/rejected
+    var status = 'pending';
+    //publish the result
+    var resolve = function (result) {
+        if (status == 'pending') {
+            value = ref(result);
+            status = 'resolved';
+            successHandler.forEach(function (f) {
+                setTimeout(function () { value.then(f) }, 0);
+            });
+        }
+
+    }
+    var reject = function () {
+        //similar to resolve    
+    }
+    cb(resolve, reject);
+    return {
+        then: function(_success, _error){
+            //if pending
+                //add to successhandler and errorhandler
+            //else
+                //invoke success or error appropriately
+        }
+    }
+}
+
 function Defer() {
     //Keep track of callback handler & end value of this promise
     var successHandler = [], errorHandler = [], value;
